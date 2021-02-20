@@ -11,12 +11,23 @@ main:Begin
  declare ordid int;
  declare kunid int;
  declare antalskorilager int;
-
+ declare exit handler for sqlexception
+ begin
+  rollback;
+  select('SQL exception is occurd,rollback is done' );
+  end;
+ declare exit handler for 1062
+ begin
+  rollback;
+  select('Duplicate value found on unique column' );
+  end;
  select antalskor into antalskorilager from produkt where produkt.id=produktID;
  if antalskorilager = 0 then
 	set value= 'out of stock';
 	leave main;
  end if;
+ -- Start transaction;
+
 
  Select id into ordid from orders where ordersID = orders.ID;
  
@@ -28,13 +39,13 @@ main:Begin
 end if;
          
 update produkt set antalskor = (antalskorilager-1) where produkt.id= produktID;
-
+-- commit;
  End; //
  
  Delimiter ;
  
 set @out = '';
-call AddToCart(1, null ,3, @out);
+call AddToCart(8, 17 ,1, @out);
 select @out;
 
 select*from orders;

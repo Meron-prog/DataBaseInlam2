@@ -69,6 +69,7 @@ create table Betygvärde
 (ID int not null auto_increment,
 primary key(id),
 värde varchar(20) not null,
+siffervärde int not null,
 created timestamp default current_Timestamp,
 lastupdate timestamp default CURRENT_TIMESTAMP
 ON UPDATE CURRENT_TIMESTAMP);

@@ -71,7 +71,7 @@ insert into inehåll(produktid, Ordersid) values(4, 10);
 insert into inehåll(produktid, Ordersid) values(5, 10);
 
 
-insert into betygvärde(värde) values('Mycket nöjd'),('Ganska nöjd'),('nöjd'),('Miss nöjd');
+insert into betygvärde(värde,siffervärde) values('Mycket nöjd',5),('Ganska nöjd',4),('nöjd',3),('Miss nöjd',2);
 
 
 insert into Betyg(betygvärdeid,komment, produktid, kundid) values(4,'Var perfekt', 1,7);

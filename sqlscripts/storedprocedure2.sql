@@ -26,10 +26,10 @@ main:Begin
 	set value= 'out of stock';
 	leave main;
  end if;
- -- Start transaction;
-
-
+ 
  Select id into ordid from orders where ordersID = orders.ID;
+ 
+ Start transaction;
  
  If ordid is null then 
 	insert into orders(kundid,Datum)values (kundid,now());
@@ -39,13 +39,15 @@ main:Begin
 end if;
          
 update produkt set antalskor = (antalskorilager-1) where produkt.id= produktID;
--- commit;
- End; //
+
+commit;
+
+End; //
  
- Delimiter ;
+Delimiter ;
  
 set @out = '';
-call AddToCart(8, 17 ,1, @out);
+call AddToCart(2, 17 ,1, @out);
 select @out;
 
 select*from orders;
@@ -54,7 +56,7 @@ select*from produkt;
 
 -- call AddToCart(2,3,1,3);
 -- select*from produkt;
-
+select*from slutilager;
 
  
  

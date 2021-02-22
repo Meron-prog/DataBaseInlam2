@@ -10,5 +10,5 @@ delimiter ;
 select*from betyg;
 call Rate(2,2,'liten',5);
 select*from betyg;
- 
+
  

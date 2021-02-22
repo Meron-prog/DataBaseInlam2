@@ -14,15 +14,15 @@ insert into katagorier(namn)values ('Sneakers');
 insert into katagorier(namn)values ('Träningskor');
 insert into katagorier(namn)values ('JoggingSkor');
 
-insert into kunder(Förnamn, Efternamn, Ort) values ('John', 'Smith', 'Göteborg');
-insert into kunder(Förnamn, Efternamn, Ort) values ('Mike', 'Robert', 'Umeå');
-insert into kunder(Förnamn, Efternamn, Ort) values ('Salem', 'Yohannes', 'Stockholm');
-insert into kunder(Förnamn, Efternamn, Ort) values ('Maria', 'Kaleb', 'Skellefteå');
-insert into kunder(Förnamn, Efternamn, Ort) values ('Sam', 'Smith', 'Stockholm');
-insert into kunder(Förnamn, Efternamn, Ort) values ('Isabela', 'Eriksson', 'Umeå');
-insert into kunder(Förnamn, Efternamn, Ort) values ('John', 'Abraha', 'Stockholm');
-insert into kunder(Förnamn, Efternamn, Ort) values ('Erik', 'Johansson', 'Umeå');
-insert into kunder(Förnamn, Efternamn, Ort) values ('Astri', 'Niklas', 'Skellefteå');
+insert into kunder(Förnamn, Efternamn, Ort,Användernamn,Lösenord) values ('John', 'Smith', 'Göteborg','abc','12345');
+insert into kunder(Förnamn, Efternamn, Ort,Användernamn,Lösenord) values ('Mike', 'Robert', 'Umeå','def','6789');
+insert into kunder(Förnamn, Efternamn, Ort,Användernamn,Lösenord) values ('Salem', 'Yohannes', 'Stockholm','ghi','111213');
+insert into kunder(Förnamn, Efternamn, Ort,Användernamn,Lösenord) values ('Maria', 'Kaleb', 'Skellefteå','uuu','11111');
+insert into kunder(Förnamn, Efternamn, Ort,Användernamn,Lösenord) values ('Sam', 'Smith', 'Stockholm','ppp','22222');
+insert into kunder(Förnamn, Efternamn, Ort,Användernamn,Lösenord) values ('Isabela', 'Eriksson', 'Umeå','iii','33333');
+insert into kunder(Förnamn, Efternamn, Ort,Användernamn,Lösenord) values ('John', 'Abraha', 'Stockholm','sss','44444');
+insert into kunder(Förnamn, Efternamn, Ort,Användernamn,Lösenord) values ('Erik', 'Johansson', 'Umeå','mmm','55555');
+insert into kunder(Förnamn, Efternamn, Ort,Användernamn,Lösenord) values ('Astri', 'Niklas', 'Skellefteå','AAA','66666');
 
 insert into orders(Datum, kundid) values ('2020-12-24', 1);
 insert into orders(Datum, kundid) values ('2020-12-30', 2);

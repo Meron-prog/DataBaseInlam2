@@ -8,7 +8,7 @@ End //
 delimiter ;
 
 select*from betyg;
-call Rate(1,4,'test',2);
+call Rate(2,2,'liten',5);
 select*from betyg;
  
  

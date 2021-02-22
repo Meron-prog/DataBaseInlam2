@@ -1,11 +1,12 @@
-drop function betygsvärde;
+drop function medel_betygsvärde;
 
 DELIMITER //
-create function betygsvärde (productID int) returns float
+create function medel_betygsvärde (productID int)
+ returns float
 READS SQL DATA
 Begin
     declare medelbetyg float;
-    
+
     select avg(betygvärde.siffervärde)
     from betyg
 	inner join betygvärde 
@@ -18,4 +19,4 @@ RETURN medelbetyg;
 END//
 DELIMITER ;
 
-select betygsvärde(2)
+select medel_betygsvärde(2)

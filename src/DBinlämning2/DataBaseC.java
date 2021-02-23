@@ -1,5 +1,8 @@
 package DBinlämning2;
 
+import clientinterface.KundInterface;
+import repositories.*;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -9,36 +12,37 @@ import java.util.Properties;
 public class DataBaseC {
 
         public static void main(String[] args) {
-            connectToAndQueryDatabase();
-        }
-
-        public static void connectToAndQueryDatabase()  {
             try {
                 Properties p = new Properties();
                 p.load(new FileInputStream("src/DBinlämning2/database2.properties"));
                 Class.forName("com.mysql.cj.jdbc.Driver");
-                Connection con= DriverManager.getConnection(p.getProperty("connectionString"),
+                Connection connection= DriverManager.getConnection(p.getProperty("connectionString"),
                         p.getProperty("name"),
                         p.getProperty("password"));
-                Statement stmt = con.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT* FROM inlämning2.katagorier");
-                while(rs.next()){
-                    int id= rs.getInt("id");
-                    String namn= rs.getString("namn");
-                    System.out.println("id: " + id + "namn: "+ namn);
-                }
 
+                KunderRepository kunderRepository = new KunderRepository(connection);
+                ProduktRepository produktRepository = new ProduktRepository(connection);
+                MärkeRepository märkeRepository = new MärkeRepository(connection);
+                OrderRepository orderRepository = new OrderRepository(connection);
+                InehållRepository inehållRepository= new InehållRepository(connection);
+                BetygRepository betygRepository= new BetygRepository(connection);
+
+                KundInterface kundInterface = new KundInterface(kunderRepository, produktRepository, märkeRepository,
+                        orderRepository, inehållRepository, betygRepository);
+
+                kundInterface.start();
             }
             catch (FileNotFoundException e){
                 e.printStackTrace();
             }catch (IOException e){
                 e.printStackTrace();
-            }catch (ClassNotFoundException e){
-                e.printStackTrace();
-            }catch (SQLException throwables){
+            } catch (SQLException throwables){
                 throwables.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
         }
-    }
+
+}
 
 

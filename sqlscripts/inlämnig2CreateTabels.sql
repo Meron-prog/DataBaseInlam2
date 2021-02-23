@@ -19,7 +19,7 @@ Efternamn varchar(20) not null,
 Ort varchar (20)not null,
 primary key(ID),
 Användernamn varchar(50) not null,
-Lösenord varchar(200) not null,kunder
+Lösenord varchar(200) not null,
 created timestamp default current_Timestamp,
 lastupdate timestamp default CURRENT_TIMESTAMP
 ON UPDATE CURRENT_TIMESTAMP);
@@ -38,6 +38,7 @@ primary key(id),
 kundid int not null,
 FOREIGN KEY(kundid) REFERENCES kunder(ID),
 Datum date not null,
+Status Varchar(20) not null,
 created timestamp default current_Timestamp,
 lastupdate timestamp default CURRENT_TIMESTAMP
 ON UPDATE CURRENT_TIMESTAMP);

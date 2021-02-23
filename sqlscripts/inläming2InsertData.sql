@@ -24,16 +24,16 @@ insert into kunder(Förnamn, Efternamn, Ort,Användernamn,Lösenord) values ('Jo
 insert into kunder(Förnamn, Efternamn, Ort,Användernamn,Lösenord) values ('Erik', 'Johansson', 'Umeå','mmm','55555');
 insert into kunder(Förnamn, Efternamn, Ort,Användernamn,Lösenord) values ('Astri', 'Niklas', 'Skellefteå','AAA','66666');
 
-insert into orders(Datum, kundid) values ('2020-12-24', 1);
-insert into orders(Datum, kundid) values ('2020-12-30', 2);
-insert into orders(Datum, kundid) values ('2021-01-04', 3);
-insert into orders(Datum, kundid) values ('2021-01-07', 4);
-insert into orders(Datum, kundid) values ('2021-01-15', 5);
-insert into orders(Datum, kundid) values ('2021-01-16', 6);
-insert into orders(Datum, kundid) values ('2021-01-29', 7);
-insert into orders(Datum, kundid) values ('2021-02-02', 8);
-insert into orders(Datum, kundid) values ('2021-02-07', 2);
-insert into orders(Datum, kundid) values ('2021-02-10', 9);
+insert into orders(Datum, kundid, Status) values ('2020-12-24', 1, 'Beställd');
+insert into orders(Datum, kundid, Status) values ('2020-12-30', 2, 'Beställd');
+insert into orders(Datum, kundid, Status) values ('2021-01-04', 3, 'Pågående');
+insert into orders(Datum, kundid, Status) values ('2021-01-07', 4, 'Beställd');
+insert into orders(Datum, kundid, Status) values ('2021-01-15', 5, 'Beställd');
+insert into orders(Datum, kundid, Status) values ('2021-01-16', 6, 'Beställd');
+insert into orders(Datum, kundid, Status) values ('2021-01-29', 7, 'Pågående');
+insert into orders(Datum, kundid, Status) values ('2021-02-02', 8, 'Beställd');
+insert into orders(Datum, kundid, Status) values ('2021-02-07', 2, 'Beställd');
+insert into orders(Datum, kundid, Status) values ('2021-02-10', 9, 'Pågående');
 
 insert into produkt(farg, storlek, pris, märkeid, antalskor)values ('svart', 38, 850.00, 1, 20);
 insert into produkt(farg, storlek, pris, märkeid, antalskor)values ('svart', 42, 1500.00, 7, 5);

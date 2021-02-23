@@ -5,14 +5,16 @@ import java.util.Date;
 public class Orders {
     private int ordersId;
     private int kundId;
+    private String status;
     private Date datum,createddate,lastuppdated;
 
-    public Orders(int ordersId, int kundId, Date datum, Date createddate, Date lastuppdated) {
+    public Orders(int ordersId, int kundId, Date datum, Date createddate, Date lastuppdated, String status) {
         this.ordersId = ordersId;
         this.kundId = kundId;
         this.datum = datum;
         this.createddate = createddate;
         this.lastuppdated = lastuppdated;
+        this.status = status;
     }
 
     public int getOrdersId() {
@@ -33,6 +35,10 @@ public class Orders {
 
     public Date getLastuppdated() {
         return lastuppdated;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }
 

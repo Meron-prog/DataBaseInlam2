@@ -32,7 +32,7 @@ main:Begin
  Start transaction;
  
  If ordid is null then 
-	insert into orders(kundid,Datum)values (kundid,now());
+	insert into orders(kundid,Datum, Status)values (kundid,now(), 'Pågående');
 	insert into inehåll(produktid,ordersid) values(produktID,last_insert_id());
  else 
 	insert into inehåll(produktid,ordersid) values(produktID,ordersID);

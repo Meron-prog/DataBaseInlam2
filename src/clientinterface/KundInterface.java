@@ -121,7 +121,7 @@ public class KundInterface {
             case ORDER_CONFIRMED:
                 state = INPUT_USERNAME;
                 break;
-            //case "AddToOrder":
+
             default:
                 System.out.println("Okänd state " + state + " avslutar i panik.");
                 System.exit(-1);
@@ -149,10 +149,10 @@ public class KundInterface {
         Produkt produkt = productsShowedToUser.get(Integer.parseInt(userInput) - 1);
         int produktId = produkt.getProduktId();
         int kundid = customer.getKunderId();
-        // orderid saknas !!!
+
         List<Orders> kundensOrders = orderRepository.getAllOrdersFromKund(kundid);
 
-        //System.out.println(kundensOrders);
+
         System.out.println(kundensOrders);
         if (userInput == "1") {
             System.out.println("Ange id på dem skor du vill lägga till i din order:");
@@ -160,8 +160,7 @@ public class KundInterface {
         } else {
             System.out.println(kundensOrders);
         }
-        //state="Inbox";
-        // System.out.println();
+
     }
 
     private void showProductsToUser() {
@@ -248,8 +247,8 @@ public class KundInterface {
     }
 
     private void showOrdersTouser() {
-        System.out.println("Here is all your order don't forget to pay!");
-        // TODO: Vis orderns innehåll
+        System.out.println("beställningar!");
+
         List<Orders> order = orderRepository.getCurrentOrdersFromKund(customer.getKunderId());
 
         List<Inehåll> ordersInehåll = inehållRepository.getOrdersInehåll(order.get(0).getOrdersId());
@@ -260,7 +259,6 @@ public class KundInterface {
             System.out.println(getNameFromMärkeId(produkt.getMärkeid()) + " " + produkt.getFarg() + " " + produkt.getStorlek() + " " + produkt.getPris());
         }
 
-        //state=HANDLE_ORDER;
         System.out.println("1. confirm your order");
         System.out.println("2. Lägg till mer produkt i order.");
     }

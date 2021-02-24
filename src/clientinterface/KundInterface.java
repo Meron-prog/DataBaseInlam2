@@ -5,6 +5,8 @@ import repositories.*;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static clientinterface.State.*;
 
@@ -25,6 +27,7 @@ public class KundInterface {
     private List<Produkt> productsShowedToUser;
     private List<Märke> allaMärken;
     private String userRating;
+
 
     public KundInterface(KunderRepository kunderRepository, ProduktRepository produktRepository,
                          MärkeRepository märkeRepository, OrderRepository orderRepository,
@@ -167,7 +170,8 @@ public class KundInterface {
 
         for (int i = 0; i < productsShowedToUser.size(); i++) {
             Produkt produkt = productsShowedToUser.get(i);
-            System.out.println((i + 1) + " : " + getNameFromMärkeId(produkt.getMärkeid()) + " " + produkt.getFarg() + " " + produkt.getStorlek() + " " + produkt.getPris());
+            System.out.println((i + 1) + " : " +  getNameFromMärkeId(produkt.getMärkeid()) + " " + produkt.getFarg() + " "
+                    + produkt.getStorlek() + " " + produkt.getPris());
         }
         System.out.println("Ange id på de skor du vill lägga titta på:");
     }
@@ -205,6 +209,13 @@ public class KundInterface {
     private void handleProduct(String userInput) {
         switch (userInput) {
             case "1":
+                List<Orders> order = orderRepository.getCurrentOrdersFromKund(customer.getKunderId());
+                if(order.isEmpty()) {
+                    inehållRepository.addToOrder(produkt.getProduktId(), customer.getKunderId(), -1);
+                } else {
+                    int orderid = order.get(0).getOrdersId();
+                    inehållRepository.addToOrder(produkt.getProduktId(), customer.getKunderId(), orderid);
+                }
                 state = HANDLE_ORDER;
                 break;
             case "2":
@@ -239,16 +250,27 @@ public class KundInterface {
     private void showOrdersTouser() {
         System.out.println("Here is all your order don't forget to pay!");
         // TODO: Vis orderns innehåll
+        List<Orders> order = orderRepository.getCurrentOrdersFromKund(customer.getKunderId());
+
+        List<Inehåll> ordersInehåll = inehållRepository.getOrdersInehåll(order.get(0).getOrdersId());
+        Set<Integer> produktIds = ordersInehåll.stream().map(i -> i.getProduktId()).collect(Collectors.toSet());
+        List<Produkt> produkts = produktRepository.getAllProducts(produktIds);
+        for (Inehåll inehåll:ordersInehåll) {
+            Produkt produkt = produkts.stream().filter(p -> p.getProduktId() == inehåll.getProduktId()).findFirst().get();
+            System.out.println(getNameFromMärkeId(produkt.getMärkeid()) + " " + produkt.getFarg() + " " + produkt.getStorlek() + " " + produkt.getPris());
+        }
+
         //state=HANDLE_ORDER;
         System.out.println("1. confirm your order");
-        System.out.println("2. Lägg till i order.");
+        System.out.println("2. Lägg till mer produkt i order.");
     }
 
 
     private void handleOrder(String userInput) {
         switch (userInput) {
             case "1":
-                // TODO: Set order till 'process'
+                List<Orders> order = orderRepository.getCurrentOrdersFromKund(customer.getKunderId());
+                orderRepository.setOrderToBestalld(order.get(0).getOrdersId());
                 state = ORDER_CONFIRMED;
                 break;
             case "2":

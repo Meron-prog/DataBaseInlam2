@@ -2,7 +2,6 @@ drop database inlämning2;
 create database inlämning2;
 use inlämning2;
 
-
 create table katagorier 
 ( ID int not null auto_increment,
 primary key(id),
@@ -10,7 +9,6 @@ primary key(id),
  created timestamp default current_Timestamp,
 lastupdate timestamp default CURRENT_TIMESTAMP
 ON UPDATE CURRENT_TIMESTAMP);
-
 
 create table Kunder
 (ID int not null auto_increment,
@@ -103,6 +101,12 @@ FOREIGN KEY(katagorieid) REFERENCES katagorier(ID)on update cascade,
 created timestamp default current_Timestamp,
 lastupdate timestamp default CURRENT_TIMESTAMP
 ON UPDATE CURRENT_TIMESTAMP);
+
+create table slutilager
+(id int not null auto_increment primary key,
+produktId int,
+foreign key(produktid) references produkt(id)on delete set null,
+DatumproduktSlut date not null);
 
 create index IX_katagorienamn on tillhör(katagorieid);
 create index IX_Märkenamn on produkt(märkeid);

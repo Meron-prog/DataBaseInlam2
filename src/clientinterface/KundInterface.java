@@ -211,10 +211,10 @@ public class KundInterface {
             case "1":
                 List<Orders> order = orderRepository.getCurrentOrdersFromKund(customer.getKunderId());
                 if(order.isEmpty()) {
-                    inehållRepository.addToOrder(produkt.getProduktId(), customer.getKunderId(), -1);
+                    System.out.println(inehållRepository.addToOrder(produkt.getProduktId(), customer.getKunderId(), -1));
                 } else {
                     int orderid = order.get(0).getOrdersId();
-                    inehållRepository.addToOrder(produkt.getProduktId(), customer.getKunderId(), orderid);
+                    System.out.println(inehållRepository.addToOrder(produkt.getProduktId(), customer.getKunderId(), orderid));
                 }
                 state = HANDLE_ORDER;
                 break;

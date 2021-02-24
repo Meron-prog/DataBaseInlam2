@@ -23,7 +23,7 @@ public class ProduktRepository {
         List<Produkt> products = new ArrayList<>();
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM produkt");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM produkt where antalskor > 0");
 
             while(rs.next()){
                 int id= rs.getInt("id");

@@ -1,8 +1,4 @@
-drop procedure AddToCart;
-
-select*from orders;
-select*from inehåll;
-select*from produkt;
+-- drop procedure AddToCart;
 
 Delimiter //
 create procedure AddToCart(in produktID int, ordersID int,kundid int, out value VARCHAR(40))
@@ -46,6 +42,10 @@ End; //
  
 Delimiter ;
  
+select*from orders;
+select*from inehåll;
+select*from produkt; 
+ 
 set @out = '';
 call AddToCart(2, 17 ,1, @out);
 select @out;
@@ -54,8 +54,6 @@ select*from orders;
 select*from inehåll;
 select*from produkt;
 
--- call AddToCart(2,3,1,3);
--- select*from produkt;
 select*from slutilager;
 
  

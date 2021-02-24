@@ -1,4 +1,4 @@
-drop function medel_betygsvärde;
+-- drop function medel_betygsvärde;
 
 DELIMITER //
 create function medel_betygsvärde (productID int)

@@ -36,7 +36,7 @@ insert into orders(Datum, kundid, Status) values ('2021-02-07', 2, 'Beställd');
 insert into orders(Datum, kundid, Status) values ('2021-02-10', 9, 'Pågående');
 
 insert into produkt(farg, storlek, pris, märkeid, antalskor)values ('svart', 38, 850.00, 1, 20);
-insert into produkt(farg, storlek, pris, märkeid, antalskor)values ('svart', 42, 1500.00, 7, 5);
+insert into produkt(farg, storlek, pris, märkeid, antalskor)values ('svart', 42, 1500.00, 7, 1);
 insert into produkt(farg, storlek, pris, märkeid, antalskor)values ('Vit', 38, 800.00, 7, 100);
 insert into produkt(farg, storlek, pris, märkeid, antalskor)values ('Brun', 36, 2000.00, 6, 300);
 insert into produkt(farg, storlek, pris, märkeid, antalskor)values ('Rosa', 24, 500.00, 5, 30);

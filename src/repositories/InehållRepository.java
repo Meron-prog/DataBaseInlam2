@@ -33,7 +33,7 @@ public class InehållRepository {
         return inehåll;
     }
 
-    public void addToOrder(int produktId, int kunderId, int orderID) {
+    public String addToOrder(int produktId, int kunderId, int orderID) {
         try {
 
             String query = "call AddToCart(?, ?, ?, ?)";
@@ -41,18 +41,19 @@ public class InehållRepository {
             stmt.setInt(1,produktId);
 
             if(orderID == -1) {
-                stmt.setInt(2, orderID);
+                stmt.setNull(2, Types.INTEGER);
             } else {
                 stmt.setInt(2, orderID);
             }
             stmt.setInt(3,kunderId);
             stmt.registerOutParameter(4, Types.VARCHAR);
 
-            stmt.executeQuery();
+            ResultSet rs = stmt.executeQuery();
 
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Ett fel inträffade, det gick inte lägga till skorna i ordern, prova igen.";
         }
-        //return 0;
+        return "Skor lades till i order.";
     }
 }

@@ -18,6 +18,7 @@ public class KundInterface {
     private final OrderRepository orderRepository;
     private final InehållRepository inehållRepository;
     private final BetygRepository betygRepository;
+    private final BetygvärdeRepository betygvärdeRepository;
 
     private State state;
 
@@ -26,18 +27,20 @@ public class KundInterface {
     private Kunder customer;
     private List<Produkt> productsShowedToUser;
     private List<Märke> allaMärken;
+    private List<Betygvärde> allabetygvärde;
     private String userRating;
 
 
     public KundInterface(KunderRepository kunderRepository, ProduktRepository produktRepository,
                          MärkeRepository märkeRepository, OrderRepository orderRepository,
-                         InehållRepository inehållRepository, BetygRepository betygRepository) {
+                         InehållRepository inehållRepository, BetygRepository betygRepository,BetygvärdeRepository betygvärdeRepository) {
         this.kunderRepository = kunderRepository;
         this.produktRepository = produktRepository;
         this.märkeRepository = märkeRepository;
         this.orderRepository = orderRepository;
         this.inehållRepository = inehållRepository;
         this.betygRepository = betygRepository;
+        this.betygvärdeRepository=betygvärdeRepository;
     }
 
     public void start() {
@@ -146,24 +149,6 @@ public class KundInterface {
         state = SELECT_PRODUCT;
     }
 
-    private void addToOrder(String userInput) {
-        Produkt produkt = productsShowedToUser.get(Integer.parseInt(userInput) - 1);
-        int produktId = produkt.getProduktId();
-        int kundid = customer.getKunderId();
-
-        List<Orders> kundensOrders = orderRepository.getAllOrdersFromKund(kundid);
-
-
-        System.out.println(kundensOrders);
-        if (userInput == "1") {
-            System.out.println("Ange id på dem skor du vill lägga till i din order:");
-
-        } else {
-            System.out.println(kundensOrders);
-        }
-
-    }
-
     private void showProductsToUser() {
         productsShowedToUser = produktRepository.getAllProductsInStock();
         allaMärken = märkeRepository.getAllMarksInStock();
@@ -230,22 +215,35 @@ public class KundInterface {
     }
 
     private void askUserToRateProdukt() {
-        System.out.println("Vilket betyg ger du produkten 1 till 5?");
+        System.out.println("Vilket betyg ger du produkten 2 till 5?");
+        allabetygvärde = betygvärdeRepository.getBetygvärde();
+        for (Betygvärde betygvärde : allabetygvärde) {
+            System.out.println(betygvärde.getSifferVärde()+ ". " + betygvärde.getVärde());
+
+        }
     }
 
     private void rateProdukt(String userInput) {
         userRating = userInput;
         state = COMMENT_PRODUCT;
     }
-
     private void askUserToCommentProdukt() {
         System.out.println("Skriv in kommentar: ");
     }
 
     private void commentProdukt(String userInput) {
-        // Spara till databasen
+        System.out.println(betygRepository.gebetygtillProdukt(getBetygIdFromSiffervärde(Integer.parseInt(userRating)), produkt.getProduktId(), userInput, customer.getKunderId()));
 
         state = HANDLE_PRODUCT;
+    }
+
+    private int getBetygIdFromSiffervärde(int siffervärde) {
+        for (Betygvärde betygvärde : allabetygvärde) {
+            if (betygvärde.getSifferVärde() == siffervärde) {
+                return betygvärde.getBetygvärdeId();
+            }
+        }
+        return -1;
     }
 
     private void showOrdersTouser() {

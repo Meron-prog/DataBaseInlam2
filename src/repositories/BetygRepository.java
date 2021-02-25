@@ -50,5 +50,24 @@ public class BetygRepository {
         return betyg;
     }
 
+    public String gebetygtillProdukt(int betygId, int produktId, String komment, int kundiD) {
+        try {
+
+            String query = "call Rate(?, ?, ?, ?)";
+            CallableStatement stmt = connection.prepareCall(query);
+            stmt.setInt(1,betygId);
+            stmt.setInt(2, produktId);
+            stmt.setString(3, komment);
+            stmt.setInt(4, kundiD);
+
+            ResultSet rs = stmt.executeQuery();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Ett fel inträffade, det gick inte lägga till betyg på produkten, prova igen.";
+        }
+        return "Betyg lades till på produkten.";
+    }
+
 }
 

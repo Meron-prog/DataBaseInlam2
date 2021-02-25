@@ -26,9 +26,10 @@ public class DataBaseC {
                 OrderRepository orderRepository = new OrderRepository(connection);
                 InehållRepository inehållRepository= new InehållRepository(connection);
                 BetygRepository betygRepository= new BetygRepository(connection);
+                BetygvärdeRepository betygvärdeRepository= new BetygvärdeRepository(connection);
 
                 KundInterface kundInterface = new KundInterface(kunderRepository, produktRepository, märkeRepository,
-                        orderRepository, inehållRepository, betygRepository);
+                        orderRepository, inehållRepository, betygRepository,betygvärdeRepository);
 
                 kundInterface.start();
             }

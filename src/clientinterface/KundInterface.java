@@ -231,8 +231,14 @@ public class KundInterface {
         System.out.println("Skriv in kommentar: ");
     }
 
-    private void commentProdukt(String userInput) {
-        System.out.println(betygRepository.gebetygtillProdukt(getBetygIdFromSiffervärde(Integer.parseInt(userRating)), produkt.getProduktId(), userInput, customer.getKunderId()));
+    private void commentProdukt(String userKommentar) {
+        String returnString = betygRepository.gebetygtillProdukt(
+                getBetygIdFromSiffervärde(Integer.parseInt(userRating)),
+                produkt.getProduktId(),
+                userKommentar,
+                customer.getKunderId());
+
+        System.out.println(returnString);
 
         state = HANDLE_PRODUCT;
     }

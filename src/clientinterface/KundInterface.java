@@ -142,6 +142,7 @@ public class KundInterface {
             return;
         }
         System.out.println("Välkommen " + customer.getFörNamn() + " " + customer.getEfterNamn());
+        System.out.println(" ");
         state = SELECT_PRODUCT;
     }
 
@@ -173,6 +174,7 @@ public class KundInterface {
                     + produkt.getStorlek() + " " + produkt.getPris());
         }
         System.out.println("Ange id på de skor du vill lägga titta på:");
+        System.out.println(" ");
     }
 
     private String getNameFromMärkeId(int märkeid) {
@@ -198,7 +200,7 @@ public class KundInterface {
         for (Betyg betyg : allaBetyg) {
             System.out.println(betyg.getKomment());
         }
-
+        System.out.println(" ");
         System.out.println("Vad vill du göra med produkten: ");
         System.out.println("1. Lägg till i order.");
         System.out.println("2. Ge betyg.");
@@ -258,7 +260,7 @@ public class KundInterface {
             Produkt produkt = produkts.stream().filter(p -> p.getProduktId() == inehåll.getProduktId()).findFirst().get();
             System.out.println(getNameFromMärkeId(produkt.getMärkeid()) + " " + produkt.getFarg() + " " + produkt.getStorlek() + " " + produkt.getPris());
         }
-
+        System.out.println();
         System.out.println("1. confirm your order");
         System.out.println("2. Lägg till mer produkt i order.");
     }
